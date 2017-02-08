@@ -363,4 +363,6 @@ function corename()   # Get name of app that created a corefile.
         echo -n $file : ; gdb --core=$file --batch | head -1
     done
 }
-tmux
+if [[ -f /usr/bin/tmux ]]; then
+  tmux
+fi
