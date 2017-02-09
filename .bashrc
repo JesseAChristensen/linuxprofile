@@ -364,5 +364,7 @@ function corename()   # Get name of app that created a corefile.
     done
 }
 if [[ -f /usr/bin/tmux ]]; then
-  tmux
+  if [[ -v $TMUX ]]; then
+    /usr/bin/tmux
+  fi
 fi
