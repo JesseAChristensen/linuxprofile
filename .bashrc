@@ -163,16 +163,6 @@ alias la='ll -A'           #  Show hidden files.
 alias treec='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 
 
-# .. and functions
-function man()
-{
-    for i ; do
-        xtitle The $(basename $1|tr -d .[:digit:]) manual
-        command man -a "$i"
-    done
-}
-
-
 #-------------------------------------------------------------
 # File & strings related functions:
 #-------------------------------------------------------------
