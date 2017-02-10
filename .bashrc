@@ -120,6 +120,13 @@ if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 #-------------------
+# Directory Aliases
+alias cdsup='cd /etc/supervisord.d/'
+alias cdlog='cd /var/log'
+alias cdnet='cd /etc/sysconfig/network-scripts'
+alias cdsys='cd /etc/sysconfig'
+alias cdblk='cd /sys/block'
+alias cdweb='cd /var/www/html'
 
 alias rm='rm -i'
 alias cp='cp -i'
