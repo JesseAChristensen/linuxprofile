@@ -15,7 +15,7 @@ filetype plugin indent on
 
 nnoremap <space> za
 inoremap jk <Esc>
-" nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
 colorscheme murphy
 set foldmethod=indent
@@ -27,16 +27,16 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set fileformat=unix
-" au BufNewFile,BufRead *.py
-"     \set tabstop=4
-"     \set softtabstop=4
-"     \set shiftwidth=4
-"     \set textwidth=79
-"     \set expandtab
-"     \set autoindent
-"     \set fileformat=unix
-"     \nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-" let python_highlight_all=1
+au BufNewFile,BufRead *.py
+    \set tabstop=4
+    \set softtabstop=4
+    \set shiftwidth=4
+    \set textwidth=79
+    \set expandtab
+    \set autoindent
+    \set fileformat=unix
+    \nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+let python_highlight_all=1
 syntax on
 set nu
 
