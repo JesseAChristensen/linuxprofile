@@ -1,0 +1,10 @@
+colorscheme delek 
+set foldmethod=indent
+set foldlevel=0
+set autoindent
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set fileformat=unix
