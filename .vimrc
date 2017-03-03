@@ -2,10 +2,14 @@ set nocompatible
 " filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'bundle/Vundle.vim'
 
+
+" Note: please run 'vim +BundleInstall' on the command line to install
+" these plugins.
+Plugin 'bundle/Vundle.vim'
 " Plugins go below here
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/syntastic'
 " Plugins go above here
 call vundle#end()
@@ -18,8 +22,8 @@ inoremap jk <Esc>
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
 " colorscheme murphy
-let python_highlight_all=1
 syntax on
+let python_highlight_all=1
 set nu
 
 
