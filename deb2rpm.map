@@ -1,0 +1,30 @@
+Feature                              rpm                                   deb
+----------------------------------------------------------------------------------
+View all installed packages          rpm -qa                               dpkg -l, dpkg-query -Wf '${Package}\n'
+View all installed packages          rpm -qa                               dpkg --get-selections
+----------------------------------------------------------------------------------
+View package info, installed package rpm -qi packagename (1)               apt-cache show packagename
+View package info, installed package rpm -qi packagename (1)               dpkg -s packagename
+----------------------------------------------------------------------------------
+View package info, package file      rpm -qip ./packagename.rpm (1)        dpkg -I ./packagename.deb
+----------------------------------------------------------------------------------
+View pre/post install shell scripts  rpm -q --scripts packagename          cat /var/lib/dpkg/info/packagename.{pre,post}{inst,rm}
+----------------------------------------------------------------------------------
+Find which package owns a file       rpm -qif /some/file.foo               dpkg -S /dome/file.foo
+----------------------------------------------------------------------------------
+View files in an installed package   rpm -ql packagename                   dpkg -L packagename
+----------------------------------------------------------------------------------
+View files in an package file        rpm -qlp ./packagename.rpm            dpkg -c ./packagename.deb
+----------------------------------------------------------------------------------
+List dependencies of a package       rpm -q --requires packagename         apt-cache depends package
+----------------------------------------------------------------------------------
+List dependencies of a package file  rpm -qp --requires ./packagename.rpm  (shown in package's info)
+----------------------------------------------------------------------------------
+Install a package file               rpm -ivh ./packagename.rpm            dpkg -i
+----------------------------------------------------------------------------------
+Uninstall a package                  rpm -e packagename                    apt-get remove/purge packagename
+Uninstall a package                  rpm -e packagename                    dpkg -r/dpkg -P
+----------------------------------------------------------------------------------
+Upgrade a package from a file        rpm -Uvh ./packagename.rpm            dpkg -i packagename.deb
+----------------------------------------------------------------------------------
+View changelog for a package file    rpm -qp --changelog ./packagename.rpm dpkg-deb --fsys-tarfile packagename.deb | tar -O -xvf - ./usr/share/doc/packagename/changelog.gz | gunzip

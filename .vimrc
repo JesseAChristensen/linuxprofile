@@ -1,18 +1,21 @@
 set nocompatible
 " filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
+" if ~/.vim/bundle exists, lets activate it!
+if !empty(glob("~/.vim/bundle"))
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+  " Note: please run 'vim +BundleInstall' on the command line to install
+  " these plugins.
+  Plugin 'bundle/Vundle.vim'
+  " Plugins go below here
+  Bundle 'Valloric/YouCompleteMe'
+  Bundle 'chase/vim-ansible-yaml'
+  Plugin 'scrooloose/syntastic'
+  " Plugins go above here
+  call vundle#end()
+endif
 
-" Note: please run 'vim +BundleInstall' on the command line to install
-" these plugins.
-Plugin 'bundle/Vundle.vim'
-" Plugins go below here
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'chase/vim-ansible-yaml'
-Plugin 'scrooloose/syntastic'
-" Plugins go above here
-call vundle#end()
 filetype plugin on
 filetype plugin indent on
 
@@ -26,9 +29,8 @@ syntax on
 let python_highlight_all=1
 set nu
 
-
-"python with virtualenv support
-py << EOF
+function! s:doPyVEnv()
+  py << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -36,3 +38,10 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
+  return 1
+endfunction
+
+"python with virtualenv support
+if has('python')
+  call s:doPyVEnv()
+endif
