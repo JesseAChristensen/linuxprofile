@@ -12,15 +12,14 @@ HOMEFILES=(
 ".lftprc"
 ".tmux.conf"
 ".vimrc"
+".vim/*"
 )
 
 
 if [[ "$1" == "-f" ]]; then
   for each_file in ${HOMEFILES[@]}; do
-    cp -f $each_file ~/
+    cp -rf $each_file ~/
   done
-  mkdir -p ~/.vim/ftplugin
-  cp -f .vim/ftplugin/* ~/.vim/ftplugin/
   exit 0
 fi
 
@@ -35,7 +34,7 @@ if ! $(echo $PROCEED | grep -qP "[Yy][Ee[Ss]?]?"); then
   exit 0
 fi
 for each_file in ${HOMEFILES[@]}; do
-  cp -i $each_file ~/
+  cp -irf $each_file ~/
 done
 
 if [[ ! -e ~/.gitcommittemplate ]]; then
@@ -49,8 +48,5 @@ else
     cat .gitcommittemplate >> ~/.gitcommittemplate
   fi
 fi
-
-mkdir -p ~/.vim/ftplugin
-cp -if .vim/ftplugin/* ~/.vim/ftplugin/
 
 source ~/.bashrc

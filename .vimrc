@@ -2,15 +2,20 @@ set nocompatible
 " filetype off
 
 " if ~/.vim/bundle exists, lets activate it!
+" if it doesn't exist, git it from 
+" $ git clone https://github.com/VundleVim/Vundle.vim.git
+" ~/.vim/bundle/Vundle.vim
+"
 if !empty(glob("~/.vim/bundle"))
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
   " Note: please run 'vim +BundleInstall' on the command line to install
   " these plugins.
+  " Note: also run from inside vim: ":helptags ~/.vim/doc"
+  " # vim:ft=ansible sets the vim filetype to ansible
   Plugin 'bundle/Vundle.vim'
   " Plugins go below here
   Bundle 'Valloric/YouCompleteMe'
-  Bundle 'chase/vim-ansible-yaml'
   Plugin 'scrooloose/syntastic'
   " Plugins go above here
   call vundle#end()
