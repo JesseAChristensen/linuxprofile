@@ -12,7 +12,7 @@ HOMEFILES=(
 ".lftprc"
 ".tmux.conf"
 ".vimrc"
-".vim/*"
+".vim"
 )
 
 
