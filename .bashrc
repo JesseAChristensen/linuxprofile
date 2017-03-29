@@ -113,6 +113,28 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 #
 #============================================================
 
+# Function to remove host from the ~/.ssh/known_hosts file
+rmKnownHost(){
+  if $(grep -qP "^[^#].*HashKnownHosts.+yes" /etc/ssh/ssh_config); then
+    HOSTNAME=$(ssh-keygen -H -F "$1" | grep -oP "^[^\s]+")
+    if [[ "$HOSTNAME" == '' ]]; then
+      echo "Unable to find exact hashed match for $1"
+    else
+      echo "Using hashed hostname of: $HOSTNAME"
+    fi
+  else
+    HOSTNAME="$1"
+  fi
+  if [[ "$HOSTNAME" != '' ]]; then
+    if $(grep -qP "$HOSTNAME" ~/.ssh/known_hosts); then
+      echo "removing $1 from ~/.ssh/known_hosts"
+      sed "\&$HOSTNAME&d" -i ~/.ssh/known_hosts
+    else
+      echo "$1 : not found in ~/.ssh/known_hosts"
+    fi
+  fi
+}
+
 #-------------------
 # Personnal Aliases
 #-------------------
@@ -127,6 +149,7 @@ alias cdnet='cd /etc/sysconfig/network-scripts'
 alias cdsys='cd /etc/sysconfig'
 alias cdblk='cd /sys/block'
 alias cdweb='cd /var/www/html'
+alias rmkh='rmKnownHost'
 
 alias rm='rm -i'
 alias cp='cp -i'
