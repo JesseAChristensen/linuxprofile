@@ -114,7 +114,7 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 #============================================================
 
 # Add pycharm to PATH if pycharm exists
-PYCHARM_BIN_PATH="~/bin/pycharm-professional-2017.1.3/bin"
+PYCHARM_BIN_PATH="$HOME/bin/pycharm-professional-2017.1.3/bin"
 if [ -e $PYCHARM_BIN_PATH ]; then
   PATH="$PATH:$PYCHARM_BIN_PATH"
 fi
