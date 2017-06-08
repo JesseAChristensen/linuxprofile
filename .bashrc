@@ -395,3 +395,13 @@ if [[ -e /usr/bin/tmux ]]; then
     fi
   fi
 fi
+
+# Fix for debian terminals showing old host information after a closed ssh session
+case "$TERM" in
+xterm*|rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+
+  ;;
+*)
+  ;;
+esac
