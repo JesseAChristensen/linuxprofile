@@ -114,8 +114,9 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 #============================================================
 
 # Add pycharm to PATH if pycharm exists
-if [ -e ~/bin/pycharm-community-2017.1.3/bin ]; then
-  PATH="$PATH:~/bin/pycharm-community-2017.1.2/bin"
+PYCHARM_BIN_PATH="~/bin/pycharm-community-2017.1.3/bin"
+if [ -e $PYCHARM_BIN_PATH ]; then
+  PATH="$PATH:$PYCHARM_BIN_PATH"
 fi
 
 # Function to remove host from the ~/.ssh/known_hosts file
