@@ -13,6 +13,7 @@ HOMEFILES=(
 ".tmux.conf"
 ".vimrc"
 ".vim"
+".git_hooks"
 )
 
 
