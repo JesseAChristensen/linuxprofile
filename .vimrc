@@ -50,3 +50,7 @@ endfunction
 if has('python')
   call s:doPyVEnv()
 endif
+
+if &diff
+  colorscheme murphy
+endif
