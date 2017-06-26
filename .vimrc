@@ -29,6 +29,11 @@ nnoremap <space> za
 inoremap jk <Esc>
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
+nnoremap <silent> <C-w>L :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <C-w>H :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <C-w>K :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <C-w>J :exe "resize " . (winheight(0) * 2/3)<CR>
+
 " colorscheme murphy
 syntax on
 let python_highlight_all=1
