@@ -17,6 +17,7 @@ if !empty(glob("~/.vim/bundle"))
   " Plugins go below here
   Bundle 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/syntastic'
+  Bundle 'rdnetto/YCM-Generator'
   " Plugins go above here
   call vundle#end()
 endif
@@ -39,6 +40,8 @@ syntax on
 let python_highlight_all=1
 set nu
 
+let USERENV=$USERNAME
+if USERENV != 'root'
 function! s:doPyVEnv()
   py << EOF
 import os
@@ -54,6 +57,7 @@ endfunction
 "python with virtualenv support
 if has('python')
   call s:doPyVEnv()
+endif
 endif
 
 if &diff
