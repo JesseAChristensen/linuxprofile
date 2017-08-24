@@ -121,6 +121,12 @@ fi
 
 # Function to remove host from the ~/.ssh/known_hosts file
 rmKnownHost(){
+  for eachHost in $@; do
+    ssh-keygen -f ~/.ssh/known_hosts -R $eachHost
+  done
+}
+# Old Function to remove host from the ~/.ssh/known_hosts file
+rmKnownHostOld(){
   if $(grep -qP "^[^#].*HashKnownHosts.+yes" /etc/ssh/ssh_config); then
     HOSTNAME=$(ssh-keygen -H -F "$1" | grep -oP "^[^\s]+")
     if [[ "$HOSTNAME" == '' ]]; then
