@@ -20,6 +20,18 @@ if !empty(glob("~/.vim/bundle"))
   Bundle 'rdnetto/YCM-Generator'
   " Plugins go above here
   call vundle#end()
+  let g:ycm_confirm_extra_conf = 0
+endif
+
+" if ~/.vimundo exists and vim has been compiled with persistent_undo, enable
+" the persistent_undo capability and set the undo directory.
+let vimDir = "~/.vim"
+let &runtimepath.=','.vimDir
+if has('persistent_undo')
+  let myUndoDir = expand(vimDir . '/undodir')
+  call system('mkdir -p' . vimDir)
+  call system('mkdir -p' . myUndoDir)
+  set undofile
 endif
 
 filetype plugin on
