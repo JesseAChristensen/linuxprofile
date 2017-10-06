@@ -28,9 +28,9 @@ endif
 let vimDir = "~/.vim"
 let &runtimepath.=','.vimDir
 if has('persistent_undo')
-  let myUndoDir = expand(vimDir . '/undodir')
-  call system('mkdir -p' . vimDir)
-  call system('mkdir -p' . myUndoDir)
+"  let myUndoDir = expand(vimDir . '/undodir')
+  call system('mkdir -p ~/.vim/undodir')
+  set undodir=~/.vim/undodir
   set undofile
 endif
 
