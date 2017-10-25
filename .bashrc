@@ -122,7 +122,9 @@ fi
 # Function to remove host from the ~/.ssh/known_hosts file
 rmKnownHost(){
   for eachHost in $@; do
+    IPTODEL=$(dig $eachHost | awk "/^$eachHost/{print \$5}")
     ssh-keygen -f ~/.ssh/known_hosts -R $eachHost
+    ssh-keygen -f ~/.ssh/known_hosts -R $IPTODEL
   done
 }
 # Old Function to remove host from the ~/.ssh/known_hosts file
