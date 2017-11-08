@@ -34,9 +34,12 @@ if has('persistent_undo')
   set undofile
 endif
 
-filetype plugin on
-filetype plugin indent on
-
+if &diff
+  colorscheme murphy
+else
+  filetype plugin on
+  filetype plugin indent on
+endif
 
 nnoremap <space> za
 inoremap jk <Esc>
@@ -47,10 +50,10 @@ nnoremap <silent> <C-w>H :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <C-w>K :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <C-w>J :exe "resize " . (winheight(0) * 2/3)<CR>
 
-" colorscheme murphy
+set nu
+
 syntax on
 let python_highlight_all=1
-set nu
 
 let USERENV=$USERNAME
 if USERENV != 'root'
@@ -72,6 +75,3 @@ if has('python')
 endif
 endif
 
-if &diff
-  colorscheme murphy
-endif
