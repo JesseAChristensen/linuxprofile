@@ -127,26 +127,10 @@ rmKnownHost(){
     ssh-keygen -f ~/.ssh/known_hosts -R $IPTODEL
   done
 }
-# Old Function to remove host from the ~/.ssh/known_hosts file
-rmKnownHostOld(){
-  if $(grep -qP "^[^#].*HashKnownHosts.+yes" /etc/ssh/ssh_config); then
-    HOSTNAME=$(ssh-keygen -H -F "$1" | grep -oP "^[^\s]+")
-    if [[ "$HOSTNAME" == '' ]]; then
-      echo "Unable to find exact hashed match for $1"
-    else
-      echo "Using hashed hostname of: $HOSTNAME"
-    fi
-  else
-    HOSTNAME="$1"
-  fi
-  if [[ "$HOSTNAME" != '' ]]; then
-    if $(grep -qP "$HOSTNAME" ~/.ssh/known_hosts); then
-      echo "removing $1 from ~/.ssh/known_hosts"
-      sed "\&$HOSTNAME&d" -i ~/.ssh/known_hosts
-    else
-      echo "$1 : not found in ~/.ssh/known_hosts"
-    fi
-  fi
+
+# Function to pretty print a yaml file
+printYaml(){
+  python -c 'import sys,yaml; yaml.dump(yaml.load(sys.stdin),sys.stdout, indent=4)'
 }
 
 #-------------------
@@ -156,6 +140,9 @@ if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 #-------------------
+# Function Aliases
+alias rmkh='rmKnownHost'
+alias ppyaml='printYaml'
 # Directory Aliases
 alias cdsup='cd /etc/supervisord.d/'
 alias cdlog='cd /var/log'
@@ -163,7 +150,6 @@ alias cdnet='cd /etc/sysconfig/network-scripts'
 alias cdsys='cd /etc/sysconfig'
 alias cdblk='cd /sys/block'
 alias cdweb='cd /var/www/html'
-alias rmkh='rmKnownHost'
 
 alias rm='rm -i'
 alias cp='cp -i'
