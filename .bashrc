@@ -143,6 +143,9 @@ fi
 # Function Aliases
 alias rmkh='rmKnownHost'
 alias ppyaml='printYaml'
+alias activatepy27='source ~/py27/bin/activate'
+alias activatepy34='source ~/py34/bin/activate'
+alias activatepy36='source ~/py36/bin/activate'
 # Directory Aliases
 alias cdsup='cd /etc/supervisord.d/'
 alias cdlog='cd /var/log'
