@@ -23,6 +23,10 @@ if !empty(glob("~/.vim/bundle"))
   let g:ycm_confirm_extra_conf = 0
 endif
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " if ~/.vimundo exists and vim has been compiled with persistent_undo, enable
 " the persistent_undo capability and set the undo directory.
 let vimDir = "~/.vim"
