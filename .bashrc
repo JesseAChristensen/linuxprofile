@@ -143,6 +143,7 @@ fi
 # Function Aliases
 alias rmkh='rmKnownHost'
 alias ppyaml='printYaml'
+alias please='sudo $(history -p !!)'
 alias activatepy27='source ~/py27/bin/activate'
 alias activatepy34='source ~/py34/bin/activate'
 alias activatepy36='source ~/py36/bin/activate'
@@ -154,12 +155,19 @@ alias cdsys='cd /etc/sysconfig'
 alias cdblk='cd /sys/block'
 alias cdweb='cd /var/www/html'
 
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# Command Substitutions
+# -> Prevents accidentally clobbering files.
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-# -> Prevents accidentally clobbering files.
 alias mkdir='mkdir -p'
 alias vi="vim"
+alias du='du -kh'    # Makes a more readable output.
+alias df='df -hP'
 
 alias h='history'
 alias j='jobs -l'
@@ -168,14 +176,6 @@ alias ..='cd ..'
 
 #alias tmux="tmux -2"
 
-# Pretty-print of some PATH variables:
-alias path='echo -e ${PATH//:/\\n}'
-alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
-
-
-alias du='du -kh'    # Makes a more readable output.
-alias df='df -hP'
-#alias df='df -kTh'
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls).
