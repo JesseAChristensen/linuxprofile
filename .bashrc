@@ -190,9 +190,9 @@ alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 
 # The ubiquitous 'll': directories first, with alphanumeric sorting:
 alias ll="ls -lv --group-directories-first"
-alias lm='ll |more'        #  Pipe through 'more'
+alias lm='ll --group-directories-first |more'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
-alias la='ll -A'           #  Show hidden files.
+alias la='ll --group-directories-first -A'           #  Show hidden files.
 alias treec='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 
 
