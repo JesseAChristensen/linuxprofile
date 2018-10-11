@@ -143,10 +143,10 @@ fi
 # Function Aliases
 alias rmkh='rmKnownHost'
 alias ppyaml='printYaml'
-alias please='sudo $(history -p !!)'
-alias activatepy27='source ~/py27/bin/activate'
-alias activatepy34='source ~/py34/bin/activate'
-alias activatepy36='source ~/py36/bin/activate'
+alias plz='sudo $(history -p !!)'
+alias py27='source ~/py27/bin/activate'
+alias py34='source ~/py34/bin/activate'
+alias py36='source ~/py36/bin/activate'
 # Directory Aliases
 alias cdsup='cd /etc/supervisord.d/'
 alias cdlog='cd /var/log'
@@ -193,6 +193,8 @@ alias ll="ls -lv --group-directories-first"
 alias lm='ll --group-directories-first |more'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
 alias la='ll --group-directories-first -A'           #  Show hidden files.
+alias la='ll -A'           #  Show hidden files.
+alias thor='ls -thor'      #  Show by modify date in reverse order
 alias treec='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 
 
