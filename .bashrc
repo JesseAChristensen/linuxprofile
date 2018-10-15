@@ -133,6 +133,10 @@ printYaml(){
   python -c 'import sys,yaml; yaml.dump(yaml.load(sys.stdin),sys.stdout, indent=4)'
 }
 
+ytdl(){
+  youtube-dl -f bestvideo+bestaudio/best "$1"
+}
+
 #-------------------
 # Personnal Aliases
 #-------------------
