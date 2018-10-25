@@ -144,64 +144,6 @@ if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 #-------------------
-# Function Aliases
-alias rmkh='rmKnownHost'
-alias ppyaml='printYaml'
-alias plz='sudo $(history -p !!)'
-alias py27='source ~/py27/bin/activate'
-alias py34='source ~/py34/bin/activate'
-alias py36='source ~/py36/bin/activate'
-# Directory Aliases
-alias cdsup='cd /etc/supervisord.d/'
-alias cdlog='cd /var/log'
-alias cdnet='cd /etc/sysconfig/network-scripts'
-alias cdsys='cd /etc/sysconfig'
-alias cdblk='cd /sys/block'
-alias cdweb='cd /var/www/html'
-
-# Pretty-print of some PATH variables:
-alias path='echo -e ${PATH//:/\\n}'
-alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
-
-# Command Substitutions
-# -> Prevents accidentally clobbering files.
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias mkdir='mkdir -p'
-alias vi="vim"
-alias du='du -kh'    # Makes a more readable output.
-alias df='df -hP'
-
-alias h='history'
-alias j='jobs -l'
-#alias which='type -a'
-alias ..='cd ..'
-
-#alias tmux="tmux -2"
-
-
-#-------------------------------------------------------------
-# The 'ls' family (this assumes you use a recent GNU ls).
-#-------------------------------------------------------------
-# Add colors for filetype and  human-readable sizes by default on 'ls':
-#alias ls='ls -h --color'
-alias lx='ls -lXB'         #  Sort by extension.
-alias lk='ls -lSr'         #  Sort by size, biggest last.
-alias lt='ls -ltr'         #  Sort by date, most recent last.
-alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
-alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
-
-# The ubiquitous 'll': directories first, with alphanumeric sorting:
-alias ll="ls -lv --group-directories-first"
-alias lm='ll --group-directories-first |more'        #  Pipe through 'more'
-alias lr='ll -R'           #  Recursive ls.
-alias la='ll --group-directories-first -A'           #  Show hidden files.
-alias la='ll -A'           #  Show hidden files.
-alias thor='ls -thor'      #  Show by modify date in reverse order
-alias treec='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
-
-
 #-------------------------------------------------------------
 # File & strings related functions:
 #-------------------------------------------------------------

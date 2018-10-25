@@ -7,6 +7,7 @@ helpmsg(){
 
 HOMEFILES=(
 ".bashrc"
+".aliases"
 ".gitconfig"
 ".inputrc"
 ".lftprc"
@@ -21,6 +22,8 @@ if [[ "$1" == "-f" ]]; then
   for each_file in ${HOMEFILES[@]}; do
     cp -rf $each_file ~/
   done
+  mkdir -p ~/bin
+  install --mode=0755 getExternalIp.py ~/bin/
   exit 0
 fi
 
@@ -28,6 +31,7 @@ echo -e "This will install the following files into $HOME, overwriting existing 
 for each_file in ${HOMEFILES[@]}; do
   echo $each_file
 done
+echo "~/bin/getExternalIp.py"
 echo -e "Are you sure you want to proceed? [N/y]"
 read PROCEED
 if ! $(echo $PROCEED | grep -qP "[Yy][Ee[Ss]?]?"); then
@@ -37,6 +41,8 @@ fi
 for each_file in ${HOMEFILES[@]}; do
   cp -irf $each_file ~/
 done
+mkdir -p ~/bin
+install --mode=0755 getExternalIp.py ~/bin/
 
 if [[ ! -e ~/.gitcommittemplate ]]; then
   echo "Adding '.gitcommittemplate'..."
