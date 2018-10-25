@@ -409,3 +409,11 @@ xterm*|rxvt*)
 *)
   ;;
 esac
+
+if [[ -e ~/linuxprofile ]]; then
+  pushd ~/linuxprofile
+  git fetch
+  git merge origin/master
+  ./install -f
+  popd
+fi
