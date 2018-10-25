@@ -412,8 +412,8 @@ esac
 
 if [[ -e ~/linuxprofile ]]; then
   pushd ~/linuxprofile
-  git fetch
-  git merge origin/master
-  ./install -f
+  ./timeout.sh -t 2 -d 2 git fetch
+  ./timeout.sh -t 2 -d 2 git merge origin/master
+  ./install.sh -f
   popd
 fi
