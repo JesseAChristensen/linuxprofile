@@ -352,10 +352,10 @@ xterm*|rxvt*)
   ;;
 esac
 
-if [[ -e ~/linuxprofile ]]; then
-  pushd ~/linuxprofile 2>&1 1>/dev/null
-  ./timeout.sh -t 2 -d 2 git fetch 1>/dev/null
-  ./timeout.sh -t 2 -d 2 git merge origin/master 1>/dev/null
-  ./install.sh -f 1>/dev/null
-  popd 2>&1 1>/dev/null || cd ~/
-fi
+#if [[ -e ~/linuxprofile ]]; then
+#  pushd ~/linuxprofile 2>&1 1>/dev/null
+#  ./timeout.sh -t 2 -d 2 git fetch 1>/dev/null
+#  ./timeout.sh -t 2 -d 2 git merge origin/master 1>/dev/null
+#  ./install.sh -f 1>/dev/null
+#  popd 2>&1 1>/dev/null || cd ~/
+#fi
