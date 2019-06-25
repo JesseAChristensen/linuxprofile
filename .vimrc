@@ -17,6 +17,7 @@ if !empty(glob("~/.vim/bundle"))
   " Plugins go below here
   Bundle 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/syntastic'
+  Plugin 'itchyny/vim-cursorword'
   Bundle 'rdnetto/YCM-Generator'
   " Plugins go above here
   call vundle#end()
