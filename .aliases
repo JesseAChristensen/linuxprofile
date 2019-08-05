@@ -56,4 +56,7 @@ alias la='ll -A'           #  Show hidden files.
 alias thor='ls -thor'      #  Show by modify date in reverse order
 alias treec='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 
+# find shortcuts
+alias iname='find . -iname '
+
 
