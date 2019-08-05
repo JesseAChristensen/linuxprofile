@@ -4,5 +4,13 @@
 [alias]
 	graph = log --oneline --abbrev-commit --graph --decorate --color
 	graphall = log --oneline --abbrev-commit --graph --decorate --color --branches=* --tags=* --all
+	dt = difftool
 [commit]
-  template = ~/.gitcommittemplate
+	template = ~/.gitcommittemplate
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+	#external = ~/bin/gitDiff.sh
+[pager]
+	diff =

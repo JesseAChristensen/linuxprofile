@@ -7,6 +7,7 @@ alias py34='source ~/py34/bin/activate'
 alias py36='source ~/py36/bin/activate'
 alias getExternalIp='~/bin/getExternalIp.py'
 # Directory Aliases
+alias cdetc='cd /etc'
 alias cdsup='cd /etc/supervisord.d/'
 alias cdlog='cd /var/log'
 alias cdnet='cd /etc/sysconfig/network-scripts'
