@@ -308,6 +308,11 @@ function ii()   # Get current host related info.
 #-------------------------------------------------------------
 # Misc utilities:
 #-------------------------------------------------------------
+function psgrep()
+{
+    expression="$1"
+    ps -ef | grep $expression | sed '/grep/d'
+}
 
 function repeat()       # Repeat n times command.
 {
