@@ -119,6 +119,8 @@ if [ -e $PYCHARM_BIN_PATH ]; then
   PATH="$PATH:$PYCHARM_BIN_PATH"
 fi
 
+export TMOUT=10000
+
 # Function to remove host from the ~/.ssh/known_hosts file
 rmKnownHost(){
   for eachHost in $@; do
