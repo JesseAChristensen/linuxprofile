@@ -121,6 +121,15 @@ fi
 
 export TMOUT=10000
 
+# Document ssh tunnel command (this is harder to remember than tar commands)
+tunnelHelp(){
+  echo "-L local_port:remote_ip_address:remote_port"
+  echo "eg:"
+  echo "ssh -L 8888:192.168.1.20:80 user@192.168.1.5"
+  echo "tunnel localhost:8888 traffic through to the ssh server which sends that"
+  echo "traffic on to 192.168.1.20:80"
+}
+
 # Function to remove host from the ~/.ssh/known_hosts file
 rmKnownHost(){
   for eachHost in $@; do
