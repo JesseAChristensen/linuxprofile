@@ -99,6 +99,15 @@ On_White='\e[47m'       # White
 
 NC="\e[m"               # Color Reset
 
+helpColors(){
+  echo -e "Black, Red, Green, Yellow, Blue, Purple, Cyan, White"
+  echo -e $Black"Black, "$Red"Red, "$Green"Green, "$Yellow"Yellow, "\
+$Blue"Blue, "$Purple"Purple, "$Cyan"Cyan, "$White"White "$NC
+  echo -e $BBlack"BBlack,"$BRed"BRed,"$BGreen"BGreen,"$BYellow"BYellow,"\
+$BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
+  echo -e "Append a \"B\" for bold or \"On_\" for background colors"
+  echo -e "To reset the color use just \"NC\""
+}
 
 ALERT=${BWhite}${On_Red} # Bold White on red background
 
@@ -358,11 +367,21 @@ if [[ -e /usr/bin/tmux ]]; then
   fi
 fi
 
+if [[ $UID -eq 0 ]]; then
+  _UNAMECOLOR=$BRed
+else
+  _UNAMECOLOR=$Green
+fi
+if [[ -z $SSH_TTY ]]; then 
+  _HNAMECOLOR=$Green
+else
+  _HNAMECOLOR=$BGreen
+fi
 # Fix for debian terminals showing old host information after a closed ssh session
 case "$TERM" in
 xterm*|rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-
+  #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  PS1="${debian_chroot:+($debian_chroot)}$_UNAMECOLOR\u$Purple@$_HNAMECOLOR\h$Purple:$Green\w/$_UNAMECOLOR\$$NC "
   ;;
 *)
   ;;
