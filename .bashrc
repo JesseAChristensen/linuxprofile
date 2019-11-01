@@ -387,6 +387,9 @@ xterm*|rxvt*)
   ;;
 esac
 
+# Set the gnome terminal tab title
+PROMPT_COMMAND='echo -ne "\033]0;`whoami`@`hostname`:`pwd`\007"'
+
 #if [[ -e ~/linuxprofile ]]; then
 #  pushd ~/linuxprofile 2>&1 1>/dev/null
 #  ./timeout.sh -t 2 -d 2 git fetch 1>/dev/null
