@@ -46,6 +46,11 @@ else
   filetype plugin indent on
 endif
 
+if has('gui_running')
+    colorscheme murphy
+    set lines=999 columns=999
+endif
+
 nnoremap <space> za
 inoremap jk <Esc>
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
