@@ -381,7 +381,7 @@ fi
 case "$TERM" in
 xterm*|rxvt*)
   #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  PS1="${debian_chroot:+($debian_chroot)}$_UNAMECOLOR\u$Purple@$_HNAMECOLOR\h$Purple:$Green\w/$_UNAMECOLOR\$$NC "
+  PS1="${debian_chroot:+($debian_chroot)}\[$_UNAMECOLOR\]\u\[$Purple\]@\[$_HNAMECOLOR\]\h\[$Purple\]:\[$Green\]\w/\[$_UNAMECOLOR\]\$\[$NC\] "
   ;;
 *)
   ;;
