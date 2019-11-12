@@ -109,6 +109,13 @@ $BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
   echo -e "To reset the color use just \"NC\""
 }
 
+helpVlc(){
+  echo -e "play video rotated 90 degrees"
+  echo "vlc --avcodec-hw none --video-filter transform --transform-type 90 suzuki.mp4"
+  echo -e "stream video to multicast address"
+  echo "vlc suzuki.mp4 --sout '#rtp{mux=ts,dst=239.239.239.230,port=8989}'"
+}
+
 ALERT=${BWhite}${On_Red} # Bold White on red background
 
 
