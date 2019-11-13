@@ -171,6 +171,13 @@ if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 #-------------------
+# Private (non git managed) Aliases
+#-------------------
+if [[ -f ~/.privatealiases ]]; then
+  source ~/.privatealiases
+fi
+
+#-------------------
 #-------------------------------------------------------------
 # File & strings related functions:
 #-------------------------------------------------------------
