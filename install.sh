@@ -1,9 +1,5 @@
 #!/bin/bash
-helpmsg(){
-  echo -e "usage:" 
-  echo -e "-f : force install without user interaction"
-}
-
+# installs contents of linuxprofile.git repository to current user's $HOME
 
 HOMEFILES=(
 ".bashrc"
@@ -13,47 +9,39 @@ HOMEFILES=(
 ".lftprc"
 ".tmux.conf"
 ".vimrc"
-".vim"
-".git_hooks"
+".pylintrc"
 )
 
-
-if [[ "$1" == "-f" ]]; then
+overwrite_homefiles(){
   for each_file in ${HOMEFILES[@]}; do
+    echo "installing $each_file..."
     cp -rf $each_file ~/
   done
-  mkdir -p ~/bin
-  install --mode=0755 getExternalIp.py ~/bin/
-  exit 0
-fi
+}
 
-echo -e "This will install the following files into $HOME, overwriting existing files:"
-for each_file in ${HOMEFILES[@]}; do
-  echo $each_file
-done
-echo "~/bin/getExternalIp.py"
-echo -e "Are you sure you want to proceed? [N/y]"
-read PROCEED
-if ! $(echo $PROCEED | grep -qP "[Yy][Ee[Ss]?]?"); then
-  echo -e "Aborting..."
-  exit 0
-fi
-for each_file in ${HOMEFILES[@]}; do
-  cp -irf $each_file ~/
-done
-mkdir -p ~/bin
-install --mode=0755 getExternalIp.py ~/bin/
+install_vim(){
+  echo "installing .vim ftplugins, ftdetects, syntaxes and indents"
+  rsync -a .vim/* ~/.vim/
+}
 
-if [[ ! -e ~/.gitcommittemplate ]]; then
-  echo "Adding '.gitcommittemplate'..."
-  cp -i .gitcommittemplate ~/
-else
-  echo "~/.gitcommittemplate already exists... would you like to add to the existing template?"
-  echo "[N/y]?"
-  read COMMIT
-  if $(echo $COMMIT | grep -qP "[Yy][Ee[Ss]?]?"); then
-    cat .gitcommittemplate >> ~/.gitcommittemplate
+install_binfiles(){
+  rsync -av ./bin ~/
+}
+
+install_gitfiles(){
+  rsync -av ./.git_hooks ~/
+  # we don't want to overwrite an existing .gitcommittemplate
+  if [[ ! -e ~/.gitcommittemplate ]]; then
+    echo "Adding '.gitcommittemplate'..."
+    cp .gitcommittemplate ~/
   fi
-fi
+}
+
+overwrite_homefiles
+install_vim
+install_binfiles
+install_gitfiles
 
 source ~/.bashrc
+
+

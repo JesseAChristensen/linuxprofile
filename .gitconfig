@@ -1,6 +1,6 @@
 [user]
 	email = jesse.christensen@imsar.com
-	name = Jesse Chrisetnsen
+	name = Jesse Christensen
 [alias]
 	graph = log --oneline --abbrev-commit --graph --decorate --color
 	graphall = log --oneline --abbrev-commit --graph --decorate --color --branches=* --tags=* --all
@@ -11,6 +11,6 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
-	#external = ~/bin/gitDiff.sh
+	external = ~/bin/gitDiff.sh
 [pager]
 	diff =
