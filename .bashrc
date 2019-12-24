@@ -277,16 +277,14 @@ function mydf(){
 
 # Get current host related info.
 function ii(){
-  echo -e "\nYou are logged on ${BRed}$HOST"
-  echo -e "\n${BRed}Additionnal information:$NC " ; uname -a
-  echo -e "\n${BRed}Users logged on:$NC " ; w -hs |
-           cut -d " " -f1 | sort | uniq
-  echo -e "\n${BRed}Current date :$NC " ; date
-  echo -e "\n${BRed}Machine stats :$NC " ; uptime
-  echo -e "\n${BRed}Memory stats :$NC " ; free
-  echo -e "\n${BRed}Diskspace :$NC " ; mydf / $HOME
-  echo -e "\n${BRed}Local IP Address :$NC" ; my_ip
-  echo -e "\n${BRed}Open connections :$NC "; netstat -pan --inet;
+  echo -e "${BRed}distro information:$NC"; uname -a
+  echo -e "${BRed}Users logged onto this system:$NC"
+  w -hs | cut -d " " -f1 | sort | uniq
+  echo -e "${BRed}uptime:$NC "; uptime
+  echo -e "${BRed}memory stats:$NC "; free -h
+  echo -e "${BRed}diskspace:$NC "; mydf / $HOME
+  echo -e "${BRed}internet facing IP Address :$NC" ; getExternalIp
+  echo -e "${BRed}Open connections :$NC "; netstat -pan --inet;
   echo
 }
 
