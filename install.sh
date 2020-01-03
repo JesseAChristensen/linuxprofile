@@ -2,26 +2,26 @@
 # installs contents of linuxprofile.git repository to current user's $HOME
 
 HOMEFILES=(
-".bashrc"
-".aliases"
-".gitconfig"
-".inputrc"
-".lftprc"
-".tmux.conf"
-".vimrc"
-".pylintrc"
+"bashrc"
+"aliases"
+"inputrc"
+"lftprc"
+"tmux.conf"
+"vimrc"
+"pylintrc"
 )
 
 overwrite_homefiles(){
   for each_file in ${HOMEFILES[@]}; do
-    echo "installing $each_file..."
-    cp -rf $each_file ~/
+    echo "installing $each_file to ~/.$each_file"
+    cp -rf $each_file ~/.$each_file
   done
 }
 
 install_vim(){
   echo "installing .vim ftplugins, ftdetects, syntaxes and indents"
-  rsync -a .vim/* ~/.vim/
+  mkdir -p ~/.vim
+  rsync -av vim/* ~/.vim/
 }
 
 install_binfiles(){
@@ -29,11 +29,23 @@ install_binfiles(){
 }
 
 install_gitfiles(){
-  rsync -av ./.git_hooks ~/
-  # we don't want to overwrite an existing .gitcommittemplate
+  mkdir -p ~/.git_hooks
+  rsync -av ./git_hooks/* ~/.git_hooks/
+  cp ./gitconfig ~/.gitconfig
   if [[ ! -e ~/.gitcommittemplate ]]; then
     echo "Adding '.gitcommittemplate'..."
-    cp .gitcommittemplate ~/
+    cp ./gitcommittemplate ~/.gitcommittemplate
+  fi
+  if [[ ! -e ~/.gitCommitTemplatePost ]]; then
+    cp ./gitCommitTemplatePost ~/.gitCommitTemplatePost
+  fi
+}
+
+install_sshfiles(){
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  if [[ ! -e ~/.ssh/config ]]; then
+    cp ssh/config ~/.ssh/
   fi
 }
 
@@ -41,7 +53,7 @@ overwrite_homefiles
 install_vim
 install_binfiles
 install_gitfiles
+install_sshfiles
 
 source ~/.bashrc
-
 
