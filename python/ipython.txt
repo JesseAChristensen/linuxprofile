@@ -1,0 +1,16 @@
+# ipython notes
+
+## configure with autoreload
+Thanks to [/u/mellort](https://www.reddit.com/r/Python/comments/rsfsi/tutorial_spend_30_seconds_setting_up/)
+
+Calling ipython to return the path used for the config file:
+```bash
+ipython profile create
+```
+
+Inside the ipython config file:
+```python
+c.InteractiveShellApp.extensions = ['autoreload']
+c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+```
+
