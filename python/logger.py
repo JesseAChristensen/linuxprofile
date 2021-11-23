@@ -30,6 +30,8 @@ def configure_logger(verbosity, log_file=None):
             )
 
 def display_example_messages():
+    """print messages indicating the log levels selected and show a helpful statement.
+    """
     logging.critical('this is a critical log message')
     logging.error('this is an error log message')
     logging.warning('this is a warning log message')
@@ -39,6 +41,8 @@ def display_example_messages():
           'while print statements are on STDIN'))
 
 def parse_args():
+    """simple implementation of parsing CLI arguments.
+    """
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument(
