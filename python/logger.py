@@ -29,3 +29,40 @@ def configure_logger(verbosity, log_file=None):
             format=format_str,
             )
 
+def display_example_messages():
+    logging.critical('this is a critical log message')
+    logging.error('this is an error log message')
+    logging.warning('this is a warning log message')
+    logging.info('this is an info log message')
+    logging.debug('this is a debug log message')
+    print(('Note that log messages are on STDOUT '
+          'while print statements are on STDIN'))
+
+def parse_args():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+            '-v',
+            '--verbosity',
+            default=3,
+            help="verbosity level (1-5, critical, error, warning, info, debug)",
+            )
+    parser.add_argument(
+            '-f',
+            '--logfile',
+            default=None,
+            help="optional file to log the messages instead of displaying them.",
+            )
+    return parser.parse_args()
+
+def main():
+    """Display the chosen verbosity level and print examples of the selected verbosity messages.
+    """
+    args = parse_args()
+    configure_logger(args.verbosity, args.logfile)
+    display_example_messages()
+
+
+
+if __name__ == '__main__':
+    main()
