@@ -65,6 +65,8 @@ set nu
 syntax on
 let python_highlight_all=1
 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 let USERENV=$USERNAME
 if USERENV != 'root'
 function! s:doPyVEnv()
