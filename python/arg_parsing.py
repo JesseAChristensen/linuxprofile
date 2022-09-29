@@ -2,8 +2,8 @@ from pathlib import Path
 
 def parse_args():
     import argparse #perfectly acceptable to do the import in the function
-    description = 'example description'
-    parser = argparse.ArgumentParser(description)
+    epilog = 'message displayed at the end of the help message'
+    parser = argparse.ArgumentParser(epilog=epilog)
     parser.add_argument('-s', '--string', dest='string', type=str, help='arg takes a string', required=True)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-f', '--flag', dest='do_flag', action='store_true', help='do flag')
@@ -16,7 +16,6 @@ def parse_args():
     #parser.add_argument('others', nargs='+') #consumes all positional arguments (err if no args)
     #parser.add_argument('others', nargs=2) #expects 2 positional arguments
     parser.add_argument('others', nargs='*') #expects any number of positional arguments
-    parser.epilog('message displayed at the end of the help message')
     args = parser.parse_args()
     return args
 
