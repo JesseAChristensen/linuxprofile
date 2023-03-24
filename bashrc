@@ -301,6 +301,21 @@ function psgrep(){
   ps -ef | grep $expression | sed '/grep/d'
 }
 
+# Rename files in a directory (recursive) matching a extension to a prefix-`zero padded counter`
+# based on date
+function extrename(){
+  _DIR=$1
+  _EXT=$2
+  _NEW_NAME=$3
+  COUNTER=0
+  # -printf "%p" shows the file with the path, "%f" shows just the file
+  for i in $(find $_DIR -type f -iname "*.$_EXT" -printf "%T+\t%p\n" | sort | cut -f 2); do
+    printf -v ZCOUNT '%03d' $COUNTER
+    mv $i $(dirname $i)/$_NEW_NAME-$ZCOUNT.$_EXT
+    ((COUNTER=COUNTER+1))
+  done
+}
+
 #============================================================
 # terminal prompt settings
 #============================================================
