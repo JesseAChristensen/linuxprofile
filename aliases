@@ -5,17 +5,11 @@ alias plz='sudo $(history -p !!)'
 alias py27='source ~/py27/bin/activate'
 alias py34='source ~/py34/bin/activate'
 alias py36='source ~/py36/bin/activate'
+alias py38='source ~/py38/bin/activate'
+alias py39='source ~/py39/bin/activate'
+alias py310='source ~/py310/bin/activate'
+alias py311='source ~/py311/bin/activate'
 alias getExternalIp='~/bin/getExternalIp.py'
-
-# Directory Aliases
-alias cdetc='cd /etc'
-alias cdans='cd /etc/ansible'
-alias cdsup='cd /etc/supervisord.d/'
-alias cdlog='cd /var/log'
-alias cdnet='cd /etc/sysconfig/network-scripts'
-alias cdsys='cd /etc/sysconfig'
-alias cdblk='cd /sys/block'
-alias cdweb='cd /var/www/html'
 
 # Pretty-print of some PATH variables:
 alias path='echo -e ${PATH//:/\\n}'

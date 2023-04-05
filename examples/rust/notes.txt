@@ -1,0 +1,8 @@
+## Common commands
+`cargo update` - Update crates in the Cargo.toml
+
+`cargo build` - Compile the current project
+
+`cargo run` - Build and run the current project
+
+`cargo doc --open` - Generate documentation for the current project and open in a browser.

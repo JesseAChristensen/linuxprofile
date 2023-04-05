@@ -45,14 +45,7 @@ shopt -s hostcomplete # attempt hostname completion when a word contains a `@`
 shopt -u mailwarn
 unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
 
-# Add pycharm to PATH if pycharm exists
-PYCHARM_BIN_PATH="$HOME/bin/pycharm-professional-2017.1.8/bin"
-if [ -e $PYCHARM_BIN_PATH ]; then
-  PATH="$PATH:$PYCHARM_BIN_PATH"
-fi
-
 export TMOUT=10000
-
 
 # Bash Completion
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -102,14 +95,26 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 # Help message functions
 #============================================================
 
-helpColors(){
-  echo -e "Black, Red, Green, Yellow, Blue, Purple, Cyan, White"
-  echo -e $Black"Black, "$Red"Red, "$Green"Green, "$Yellow"Yellow, "\
-$Blue"Blue, "$Purple"Purple, "$Cyan"Cyan, "$White"White "$NC
-  echo -e $BBlack"BBlack,"$BRed"BRed,"$BGreen"BGreen,"$BYellow"BYellow,"\
-$BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
-  echo -e "Append a \"B\" for bold or \"On_\" for background colors"
-  echo -e "To reset the color use just \"NC\""
+helpFunctions(){
+  echo "custom functions:"
+  echo "printYaml - pretty print a yaml file (requires python and PyYAML)"
+  echo "rmKnownHost - remove a known host from the ~/.ssh/known_hosts file"
+  echo "ytdl - download a youtube video using the best quality (requires python and yt-dlp)"
+  echo "----file related----"
+  echo "fdir - find files matching iname in CWD and exclude directory eg: fdir iname /etc"
+  echo "ff - find files containing iname in CWD"
+  echo "swap - swap two files (if they exist)"
+  echo "extract - extract an archive using the appropriate extractor for the file extension"
+  echo "----process related----"
+  echo "my_ps - list processes for the current user"
+  echo "mydf - modified df output"
+  echo "ii - host related info"
+  echo "psgrep - return processes matching a grep expression without the grep process itself included."
+  echo "extrename - rename files in a directory that match an extension so they include a counter."
+  echo "  This searches the directory recursively and puts all the renamed files in the base of the directory."
+  echo "  syntax: `extrename <directory> <extension> <new_name>`"
+  echo "  example: `extrename documents txt doc` will rename all `.txt` files in the `documents`"
+  echo "           directory so the filenames look like `doc-000.txt`, `doc-001.txt`..."
 }
 
 # Document ssh tunnel command (this is harder to remember than tar commands)
@@ -122,26 +127,10 @@ helpSshTunnel(){
 }
 
 helpFind(){
-  echo "aliases:"
-  echo ""
-}
-
-helpVlc(){
-  echo -e "play video rotated 90 degrees"
-  echo "vlc --avcodec-hw none --video-filter transform --transform-type 90 suzuki.mp4"
-  echo -e "stream video to multicast address"
-  echo "vlc suzuki.mp4 --sout '#rtp{mux=ts,dst=239.239.239.230,port=8989}'"
-}
-
-helpCd(){
-  echo "cdetc='cd /etc'"
-  echo "cdans='cd /etc/ansible'"
-  echo "cdsup='cd /etc/supervisord.d/'"
-  echo "cdlog='cd /var/log'"
-  echo "cdnet='cd /etc/sysconfig/network-scripts'"
-  echo "cdsys='cd /etc/sysconfig'"
-  echo "cdblk='cd /sys/block'"
-  echo "cdweb='cd /var/www/html'"
+  echo "Common find command examples:"
+  echo "============================="
+  echo "Find all directories in the current directory (no recursing)"
+  echo "> find . -maxdepth 1 -type d" 
 }
 
 helpLs(){
@@ -154,32 +143,33 @@ helpLs(){
   echo "treec=improved tree output"
 }
 
-helpFunctions(){
-  echo "custom functions:"
-  echo "printYaml - pretty print a yaml file (requires python and PyYAML)"
-  echo "ytld - download a youtube video using the best quality (requires python and youtube-dl"
-  echo "----file related----"
-  echo "fdir - find files matching iname in CWD and exclude directory eg: fdir iname /etc"
-  echo "ff - find files containing iname in CWD"
-  echo "swap - swap two files (if they exist)"
-  echo "extract - extract an archive using the appropriate extractor for the file extension"
-  echo "----process related----"
-  echo "my_ps - list processes for the current user"
-  echo "my_df - modified df output"
-  echo "ii - host related info"
-  echo "psgrep - return processes matching a grep expression without the grep process itself included."
+helpVlc(){
+  echo -e "play video rotated 90 degrees"
+  echo "vlc --avcodec-hw none --video-filter transform --transform-type 90 suzuki.mp4"
+  echo -e "stream video to multicast address"
+  echo "vlc suzuki.mp4 --sout '#rtp{mux=ts,dst=239.239.239.230,port=8989}'"
+}
+
+helpColors(){
+  echo -e "Black, Red, Green, Yellow, Blue, Purple, Cyan, White"
+  echo -e $Black"Black, "$Red"Red, "$Green"Green, "$Yellow"Yellow, "\
+$Blue"Blue, "$Purple"Purple, "$Cyan"Cyan, "$White"White "$NC
+  echo -e $BBlack"BBlack,"$BRed"BRed,"$BGreen"BGreen,"$BYellow"BYellow,"\
+$BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
+  echo -e "Append a \"B\" for bold or \"On_\" for background colors"
+  echo -e "To reset the color use just \"NC\""
 }
 
 # List defined help message functions
 helpers(){
   echo "helper functions:"
-  echo "  helpColors"
+  echo "  helpFunctions"
   echo "  helpSshTunnel"
   echo "  helpFind"
-  echo "  helpVlc"
-  echo "  helpCd"
   echo "  helpLs"
-  echo "  helpFunctions"
+  echo "  helpVlc"
+  echo "  helpColors"
+  echo "  aliases"
 }
 
 #============================================================
@@ -212,13 +202,17 @@ rmKnownHost(){
   done
 }
 
-# Function to pretty print a yaml file
+# Function to print a yaml file as it is interpreted by python's yaml module
 printYaml(){
-  python -c 'import sys,yaml; yaml.dump(yaml.load(sys.stdin),sys.stdout, indent=4)'
+  if /usr/bin/env python -c 'import sys,yaml; yaml.dump(yaml.load(sys.stdin),sys.stdout, indent=4)' 2>/dev/null; then
+    echo ""
+  else
+    /usr/bin/env python -c 'import sys,yaml; yaml.dump(yaml.load(sys.stdin, Loader=yaml.Loader),sys.stdout, indent=4)'
+  fi
 }
 
 ytdl(){
-  youtube-dl -f bestvideo+bestaudio/best "$1"
+  yt-dlp -f bestvideo+bestaudio/best "$1"
 }
 
 # Find iname $1 and exclude directory $2:
@@ -301,7 +295,7 @@ function psgrep(){
   ps -ef | grep $expression | sed '/grep/d'
 }
 
-# Rename files in a directory (recursive) matching a extension to a prefix-`zero padded counter`
+# Rename files in a directory (recursive) matching an extension to a prefix-`zero padded counter`
 # based on date
 function extrename(){
   _DIR=$1

@@ -49,11 +49,16 @@ install_sshfiles(){
   fi
 }
 
+install_examples(){
+  cp -r examples ~/
+}
+
 overwrite_homefiles
 install_vim
 install_binfiles
 install_gitfiles
 install_sshfiles
+install_examples
 
 source ~/.bashrc
 
