@@ -119,11 +119,19 @@ helpFunctions(){
 
 # Document ssh tunnel command (this is harder to remember than tar commands)
 helpSshTunnel(){
-  echo "-L local_port:remote_ip_address:remote_port"
-  echo "eg:"
-  echo "ssh -L 8888:192.168.1.20:80 user@192.168.1.5"
-  echo "tunnel localhost:8888 traffic through to the ssh server which sends that"
-  echo "traffic on to 192.168.1.20:80"
+  echo "Open a local port to forward to a remote port:"
+  echo "  ssh -L <local_port>:<host>:<remote_port> <user>@<host>"
+  echo "  eg: ssh -L [local_ip:]8888:192.168.1.20:80 user@192.168.1.5"
+  echo "  notes: forwards localhost traffic on 8888 to 192.168.1.20:80 "
+  echo "         via the ssh connection to 192.168.1.5."
+  echo "Create a dynamic port forwarding with SOCKS:"
+  echo "  ssh -D <port> <user>@<host>"
+  echo "  notes: Prior to <local_port> a hostname may be used for any of the"
+  echo "         above commands. If omitted, localhost is used by default."
+  echo "Open a port on the remote ssh server that exposes a local port:"
+  echo "  ssh -R [remote_ip:]<remote_port>:<local_host>:<local_port> <user>@<host>"
+  echo "  notes: If [remote_ip:] is omitted, all interfaces are used on the ssh"
+  echo "         server. Otherwise only the interface with the IP is used."
 }
 
 helpFind(){
