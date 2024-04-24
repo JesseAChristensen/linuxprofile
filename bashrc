@@ -168,6 +168,11 @@ $BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
   echo -e "To reset the color use just \"NC\""
 }
 
+helpFfmpeg(){
+  echo -e 'Convert mp4 to gif example'
+  echo -e 'ffmpeg -i PXL_20240222_235639706.TS.mp4 -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 breaker-flip.gif'
+}
+
 # List defined help message functions
 helpers(){
   echo "helper functions:"
@@ -177,6 +182,7 @@ helpers(){
   echo "  helpLs"
   echo "  helpVlc"
   echo "  helpColors"
+  echo "  helpFfmpeg"
   echo "  aliases"
 }
 
@@ -339,6 +345,10 @@ if [[ -z $SSH_TTY ]]; then
 else
   _HNAMECOLOR=$BGreen
 fi
+
+
+# Fix gnome to minimize windows when their icon is clicked on the taskbar
+[[ $(grep -P "Ubuntu|jammy" /etc/lsb-release | wc -l) -eq 3 ]] && gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
 # Fix for debian terminals showing old host information after a closed ssh session
 case "$TERM" in
