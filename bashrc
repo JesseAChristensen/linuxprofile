@@ -139,6 +139,14 @@ helpFind(){
   echo "============================="
   echo "Find all directories in the current directory (no recursing)"
   echo "> find . -maxdepth 1 -type d" 
+  echo "Find all files in the current directory and pipe to du"
+  echo "> find . -type f -print0 | du -ch --files0-from=-"
+  echo "Find all files older than 2 days"
+  echo "> find . -mtime +2"
+  echo "Find all files newer than 2 days"
+  echo "> find . -mtime -2"
+  echo "Find all files newer than 2 minutes"
+  echo "> find . -mmin -2"
 }
 
 helpLs(){
