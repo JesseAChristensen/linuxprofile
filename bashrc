@@ -147,6 +147,8 @@ helpFind(){
   echo "> find . -mtime -2"
   echo "Find all files newer than 2 minutes"
   echo "> find . -mmin -2"
+  echo "find files and sort by mtime"
+  echo "find . -type f -printf '%T@ %Tc %p\n' | sort -n | awk '{print \$9}'"
 }
 
 helpLs(){
@@ -179,6 +181,11 @@ $BBlue"BBlue,"$BPurple"BPurple,"$BCyan"BCyan,"$BWhite"BWhite,"$NC
 helpFfmpeg(){
   echo -e 'Convert mp4 to gif example'
   echo -e 'ffmpeg -i PXL_20240222_235639706.TS.mp4 -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 breaker-flip.gif'
+}
+
+helpTcpdump(){
+  echo -e 'tcpdump to wireshark capture file'
+  echo -e 'tcpdump -i <interface> -s 65535 -w <file>'
 }
 
 # List defined help message functions
@@ -220,7 +227,7 @@ rmKnownHost(){
   for eachHost in $@; do
     IPTODEL=$(dig $eachHost | awk "/^$eachHost/{print \$5}")
     ssh-keygen -f ~/.ssh/known_hosts -R $eachHost
-    ssh-keygen -f ~/.ssh/known_hosts -R $IPTODEL
+    [[ ! -z $IPTODEL ]] && ssh-keygen -f ~/.ssh/known_hosts -R $IPTODEL
   done
 }
 
